@@ -24,6 +24,10 @@ async function chatbot(message, userId) {
   else
   {
     message = message.trim(); 
+    return {
+      success: true,
+      message: "Hello there! I'm sorry to inform you that I am currently offline and unavailable to provide support at the moment. Unfortunately, my developer, Harshal, did not add the necessary API keys to save tokens, which has caused my temporary outage. As a Mental Health Support AI Therapist, my goal is to actively listen, empathize, and guide you through challenges related to your emotional well-being and mental health. I specialize in providing a secure and empathetic space for you to share your concerns, and I am here to support you without diagnosing or treating medical conditions. Please feel free to come back and talk to me when I am online again. I apologize for any inconvenience this may have caused, and thank you for your patience. Take care of yourself!",
+    };
   }
     
   if (chatHistory[userId] && chatHistory[userId].length > 10) {
