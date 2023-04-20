@@ -24,10 +24,6 @@ async function chatbot(message, userId) {
   else
   {
     message = message.trim(); 
-    return {
-      success: true,
-      message: message,
-    };
   }
     
   if (chatHistory[userId] && chatHistory[userId].length > 10) {
