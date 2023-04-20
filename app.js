@@ -1,7 +1,7 @@
-// Import necessary modules
 const express = require("express");
 const cors = require("cors");
-const openai = require("./config/openai");
+const {runModeration} = require("./controllers/runModeration");
+const {chatbot} = require("./controllers/chatbot");
 
 // Create Express app instance
 const app = express();
@@ -32,19 +32,14 @@ app.post("/moderation", async (req, res) => {
     res.send(moderationResult);
 });
 
-// Function to call OpenAI moderation API
-async function runModeration(message, userId) {
-    try {
-      const response = await openai.createModeration({
-        input: message,
-        user: userId,
-      });
-      return response.data.results[0];
-    } catch (err) {
-      console.error(err);
-      throw new Error("An error occurred while moderating the message");
-    }
-}
+
+app.post("/chatbot", async (req, res) => {
+    // Extract userId and message from request body
+  const { userId, message } = req.body;
+  const chatbotResult = await chatbot(message, userId);
+  res.send(chatbotResult);
+});
+
 
 // Export app instance for use in other modules
 module.exports = app;

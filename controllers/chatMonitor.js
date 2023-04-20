@@ -1,6 +1,7 @@
 const firebase = require("../config/firebase");
 const openai = require("../config/openai");
 const sendSelfHarmEmail = require("./selfHarmEmail");
+const { runModeration } = require("./runModeration");
 
 // Define function to monitor chat collections
 async function monitorChatCollections() {
@@ -57,19 +58,6 @@ async function monitorChatCollections() {
   });
 }
 
-// Function to call OpenAI moderation API
-async function runModeration(message, userId) {
-  try {
-    const response = await openai.createModeration({
-      input: message,
-      user: userId,
-    });
-    return response.data.results[0];
-  } catch (err) {
-    console.error(err);
-    throw new Error("An error occurred while moderating the message");
-  }
-}
 
 // Export monitorChatCollections function for use in other modules
 module.exports = {
