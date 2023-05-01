@@ -6,9 +6,10 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "pm2 start index.js --name backend",
+    "prod": "pm2 start index.js --name backend && pm2 logs > logs.txt",
     "restart": "pm2 restart backend",
-    "stop": "pm2 stop backend"
+    "stop": "pm2 stop backend",
+    "logs": "cat /root/.pm2/logs/backend-out.log"
   },
   "author": "",
   "license": "ISC",

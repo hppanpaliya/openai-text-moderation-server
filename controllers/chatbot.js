@@ -99,7 +99,7 @@ async function chatbot(message, userId) {
       success: false,
       message: "An error occurred while checking token usage.",
     };
-  } else if (userTotal >= 500) {
+  } else if (userTotal >= 2500) {
     return {
       success: false,
       message: "Token limit reached.",
